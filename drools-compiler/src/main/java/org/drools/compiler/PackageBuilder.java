@@ -2602,7 +2602,8 @@ public class PackageBuilder implements DeepCloneable<PackageBuilder> {
             }
         }
 
-        boolean traitable = typeDescr.getAnnotation( Traitable.class.getSimpleName() ) != null;
+        AnnotationDescr traitableAnn = typeDescr.getAnnotation( Traitable.class.getSimpleName() );
+        boolean traitable = traitableAnn != null;
 
         String[] fullSuperTypes = new String[typeDescr.getSuperTypes().size() + 1];
         int j = 0;
@@ -2636,7 +2637,9 @@ public class PackageBuilder implements DeepCloneable<PackageBuilder> {
                 def = new ClassDefinition( fullName,
                         fullSuperTypes[0],
                         interfaces );
-                def.setTraitable( traitable );
+                def.setTraitable( traitable, traitableAnn != null &&
+                                             traitableAnn.getValue( "logical" ) != null &&
+                                             Boolean.valueOf( traitableAnn.getValue( "logical" ) ) );
         }
 
         for (String annotationName : typeDescr.getAnnotationNames()) {
