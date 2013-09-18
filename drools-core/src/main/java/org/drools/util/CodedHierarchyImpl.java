@@ -742,6 +742,10 @@ public class CodedHierarchyImpl<T> implements CodedHierarchy<T>, Externalizable 
         fixedRoot = false;
     }
 
+    public boolean isEmpty() {
+        return line.isEmpty();
+    }
+
 
     protected static class HierNode<T> implements Comparable<HierNode<T>>, Externalizable {
 
