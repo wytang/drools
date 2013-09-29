@@ -605,12 +605,12 @@ public class TraitMapProxyClassBuilderImpl implements TraitProxyClassBuilder, Se
                 } else if ( ! isCoreTrait && isTraitTrait ) {
                     mv.visitVarInsn( ALOAD, 1 );
                     mv.visitTypeInsn( CHECKCAST, Type.getInternalName( TraitProxy.class ) );
-                    mv.visitMethodInsn( INVOKEVIRTUAL, Type.getInternalName( TraitProxy.class ), "getObject", Type.getMethodDescriptor( Type.getType( Object.class ), new Type[]{ } ) );
+                    mv.visitMethodInsn( INVOKEVIRTUAL, Type.getInternalName( TraitProxy.class ), "getObject", Type.getMethodDescriptor( Type.getType( TraitableBean.class ), new Type[]{ } ) );
                     mv.visitVarInsn( ASTORE, 1 );
                 } else if ( isCoreTrait && isTraitTrait ) {
                     mv.visitVarInsn( ALOAD, 1 );
                     mv.visitTypeInsn( CHECKCAST, Type.getInternalName( TraitProxy.class ) );
-                    mv.visitMethodInsn( INVOKEVIRTUAL, Type.getInternalName( TraitProxy.class ), "getObject", Type.getMethodDescriptor( Type.getType( Object.class ), new Type[] {} ) );
+                    mv.visitMethodInsn( INVOKEVIRTUAL, Type.getInternalName( TraitProxy.class ), "getObject", Type.getMethodDescriptor( Type.getType( TraitableBean.class ), new Type[] {} ) );
                     mv.visitTypeInsn( CHECKCAST, Type.getInternalName( TraitableBean.class ) );
                     mv.visitLdcInsn( hardField.getTypeName() );
                     mv.visitMethodInsn( INVOKEINTERFACE, Type.getInternalName( TraitableBean.class ), "getTrait", Type.getMethodDescriptor( Type.getType( Thing.class ), new Type[] { Type.getType( String.class ) } ) );
