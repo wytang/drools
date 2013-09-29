@@ -1100,7 +1100,6 @@ public class TraitTestFieldsAndLegacyClasses {
     }
 
     @Test
-    @Ignore
     public void testTraitTwoParentOneChild() {
 
         String drl = "" +
@@ -1217,7 +1216,6 @@ public class TraitTestFieldsAndLegacyClasses {
     }
 
     @Test
-    @Ignore
     public void testTraitWithPositionArgs(){
 
         String drl = "" +
@@ -1239,13 +1237,13 @@ public class TraitTestFieldsAndLegacyClasses {
                      "\n" +
                      "declare trait Student\n" +
                      "@propertyReactive\n" +
-                     "    studyingCountry : String\n" +
+                     "    studyingCountry : String @position(1)\n" +
                      "    hasAssistantship : boolean\n" +
                      "end\n" +
                      "\n" +
                      "declare trait Worker\n" +
                      "@propertyReactive\n" +
-                     "    pob : String\n" +
+                     "    pob : String @position(0)\n" +
                      "    workingCountry : String\n" +
                      "end\n" +
                      "\n" +
@@ -1342,9 +1340,8 @@ public class TraitTestFieldsAndLegacyClasses {
                      "    Student( $sc : studyingCountry ) @watch( studyingCountry )\n" +
                      "    $sw : StudentWorker( $pob , $sc; )\n" +
                      "    IRCitizen( $pob := pob )\n" +
-                     "    //$sw : StudentWorker()\n" +
                      "then\n" +
-                     "    System.out.println(\"::You are studying and working at ASU.\" );\n" +
+                     "    System.out.println(\"::You are studying and working at ASU.\" + $sw );\n" +
                      "    list.add(\"You are studying and working at ASU\");\n" +
                      "end\n";
 
